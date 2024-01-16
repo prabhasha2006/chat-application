@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./chatroom.css">
+    <link rel="stylesheet" href="./notification.css">
+    <link rel="stylesheet" href="./homescreen.css">
+    <link rel="icon" href="./evelocoreLogo.png">
+    <title id="title">EveloCore Chat</title>
+</head>
+<body>
+    <div class="homescreen">
+        <button id="chatServerOpenBtn" class="changeChat" onclick="chatServerOpen(this)">Join A Chat Server</button>
+        <table>
+            <tr>
+                <td>
+                    <label id="serverLabel">Client</label>
+                </td>
+                <td>
+                    <input type="text" id="listens" oninput="theirName.innerHTML = this.value; this.value = lowerCase(this.value)">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="">Your...</label>
+                </td>
+                <td>
+                    <input type="text" id="emits" oninput="this.value = lowerCase(this.value)">
+                </td>
+            </tr>
+        </table>
+        <button class="changeChat" onclick="enterChat(); setCookie('EevelocoreChatId', emits.value, 30)">Start</button>
+    </div>
+    <!--primary-notification-->
+    <div class="primary-notification">
+        <div class="primary-notification-contain">
+            <div class="primary-notification-img-box">
+                <img src="./media/primary-notification.png">
+            </div>
+            <div class="primary-notification-message-box">
+                <h2  id="primary-notification-head"><i class='fa fa-bell'></i> notification</h2>
+                <b id="primary-notification-text">Error!<br>No error found.</b>
+                <h3>
+                    <a id="primary-notification-cancel">close</a>
+                    <a id="primary-notification-got"> Open Chat</a>
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="menu menu-2">
+        <div class="chatHeader">
+            <img id="dp" src="https://cdn-icons-png.flaticon.com/512/11498/11498793.png">
+            <h2 id="theirName">Client's Name</h2>
+            <img class="signalImage" src="https://cdn-icons-png.flaticon.com/512/709/709624.png"  onclick="document.getElementsByClassName('homescreen')[0].style.display = 'flex'">
+        </div>
+        <div class="chatBody"><br>
+            <div class="messages holdingdMsg">
+                <div class="Content">
+                    <p>Fast chat app with web socket by <b>Kumuthu Prabhasha.</b> V6.7</p>
+                </div>
+            </div>
+        </div>
+        <div class="chatControls">
+            <textarea name=""  id="messageInput" placeholder="Send a message" id="" cols="1" rows="20"></textarea>
+            <a onclick="sendMessage(messageInput.value)">
+                <img src="https://cdn-icons-png.flaticon.com/512/10146/10146605.png" alt="">
+            </a>
+        </div>
+    </div>
+    <!-- <input type="text" id="input">
+    <button onclick="sendMessage(input.value || 'Null Value')">Send</button>
+    <br><br> -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./evelocore.js"></script>
+    <script src="./cookie.js"></script>
+</body>
+</html>
